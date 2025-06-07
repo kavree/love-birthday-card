@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>สุขสันต์วันเกิดนะคนพิเศษ!</title>
+  <meta name="description" content="ส่งความสุขและความปรารถนาดีในวันเกิดของคุณด้วยการ์ดอวยพรวันเกิดที่สวยงามและน่ารัก พร้อมด้วยข้อความอวยพรและความปรารถนาดีที่เต็มไปด้วยความรัก">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎂</text></svg>">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <style>
+    :root {
+      --deep-purple: #2c1d3e; /* Slightly softer deep purple */
+      --neon-pink: #FF69B4; /* Hot Pink - still vibrant but can be used with pastels */
+      --electric-blue: #7DF9FF; /* Electric Blue - can be softened for cute glow */
+      --pastel-pink: #FFD1DC;
+      --pastel-lavender: #E6E6FA;
+      --light-purple: #a082c4; /* Softer light purple for links/accents */
+      --glow-pink-soft: rgba(255, 105, 180, 0.6);
+      --glow-blue-soft: rgba(125, 249, 255, 0.5);
+      --text-main: #f0e8ff; /* Lighter text for better contrast on new deep purple */
+    }
+
+    body {
+      font-family: 'Prompt', 'Kanit', sans-serif;
+      background-color: var(--deep-purple);
+      color: var(--text-main);
+      overflow-x: hidden;
+    }
+
+    /* Cute Scrollbar */
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #3b2a4f; /* Darker pastel purple track */
+    }
+    ::-webkit-scrollbar-thumb {
+      background: linear-gradient(180deg, var(--pastel-pink), var(--pastel-lavender));
+      border-radius: 5px;
+      border: 1px solid var(--light-purple);
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: linear-gradient(180deg, var(--neon-pink), var(--electric-blue));
+    }
+
+    .shimmer {
+      position: relative;
+      overflow: hidden;
+      background-color: #4a3b5e; /* Base for shimmer, matching cute theme */
+    }
+    .shimmer::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(230, 230, 250, 0.25), transparent); /* Softer lavender shimmer */
+      animation: shimmer-animation 1.8s infinite;
+    }
+    @keyframes shimmer-animation {
+      0% { transform: translateX(-150%); }
+      100% { transform: translateX(150%); }
+    }
+    
+    .text-neon-pink-cute {
+        color: var(--neon-pink);
+        text-shadow: 0 0 3px #fff, 0 0 7px var(--neon-pink), 0 0 10px var(--neon-pink);
+    }
+    .text-neon-blue-cute {
+        color: var(--electric-blue);
+        text-shadow: 0 0 3px #fff, 0 0 7px var(--electric-blue), 0 0 10px var(--electric-blue);
+    }
+
+    /* Birthday Cake CSS */
+    .birthday-cake-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 1rem;
+      transform: scale(0.7); /* ลดขนาดเค้กลงอีก 30% */
+    }
+    .cake-base {
+      width: 120px; /* ลดความกว้างฐาน */
+      height: 25px; /* ลดความสูงฐาน */
+      background-color: #A0522D;
+      border-radius: 5px 5px 0 0;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+      position: relative;
+      z-index: 1;
+    }
+    .cake-layer {
+      width: 100px; /* ลดความกว้างชั้นเค้ก */
+      height: 45px; /* ลดความสูงชั้นเค้ก */
+      margin: 0 auto;
+      border-radius: 5px;
+      position: relative;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+    .cake-layer.bottom {
+      background-color: var(--pastel-pink);
+      width: 110px;
+      height: 50px;
+    }
+    .cake-layer.middle {
+      background-color: var(--pastel-lavender);
+      bottom: 5px;
+      height: 45px;
+    }
+    .cake-layer.top {
+      background-color: #fff8dc;
+      bottom: 8px;
+      height: 40px;
+      width: 90px;
+    }
+    .icing {
+      position: absolute;
+      bottom: -6px;
+      left: 0;
+      width: 100%;
+      height: 12px; /* ลดความสูงของไอซิ่ง */
+      background-image: 
+        radial-gradient(circle at 10px -5px, transparent 8px, var(--neon-pink) 9px),
+        radial-gradient(circle at 30px -5px, transparent 8px, var(--neon-pink) 9px),
+        radial-gradient(circle at 50px -5px, transparent 8px, var(--neon-pink) 9px),
+        radial-gradient(circle at 70px -5px, transparent 8px, var(--neon-pink) 9px),
+        radial-gradient(circle at 90px -5px, transparent 8px, var(--neon-pink) 9px);
+      background-size: auto 100%;
+      background-repeat: repeat-x;
+    }
+    .cake-layer.top .icing {
+      background-image: 
+        radial-gradient(circle at 10px -5px, transparent 6px, var(--electric-blue) 7px),
+        radial-gradient(circle at 25px -5px, transparent 6px, var(--electric-blue) 7px),
+        radial-gradient(circle at 40px -5px, transparent 6px, var(--electric-blue) 7px),
+        radial-gradient(circle at 55px -5px, transparent 6px, var(--electric-blue) 7px),
+        radial-gradient(circle at 70px -5px, transparent 6px, var(--electric-blue) 7px);
+    }
+    .candles {
+      display: flex;
+      justify-content: space-around;
+      width: 70%;
+      position: absolute;
+      bottom: 95%;
+      left: 15%;
+      z-index: 10;
+    }
+    .candle {
+      width: 6px; /* ลดความกว้างเทียน */
+      height: 25px; /* ลดความสูงเทียน */
+      background-color: #FFDEAD;
+      border-radius: 2px 2px 0 0;
+      position: relative;
+      box-shadow: inset 1px 1px 1px rgba(0,0,0,0.2);
+    }
+    .flame {
+      position: absolute;
+      bottom: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 8px; /* ลดความกว้างเปลวไฟ */
+      height: 15px; /* ลดความสูงเปลวไฟ */
+      background-color: #FFB000;
+      border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+      box-shadow: 0 0 4px #FFB000, 0 0 8px #FF8C00, 0 0 12px #FF4500;
+      animation: flicker 0.5s infinite alternate ease-in-out;
+      transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+    }
+    .flame.out {
+      opacity: 0;
+      transform: translateX(-50%) scale(0.5) translateY(10px);
+    }
+    @keyframes flicker {
+      0% { transform: translateX(-50%) scaleY(1) scaleX(1); opacity: 1; }
+      50% { transform: translateX(-45%) scaleY(0.95) scaleX(1.05); opacity: 0.8; }
+      100% { transform: translateX(-55%) scaleY(1.05) scaleX(0.95); opacity: 1; }
+    }
+    .smoke {
+      position: absolute;
+      bottom: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 6px;
+      height: 15px;
+      background-color: rgba(128, 128, 128, 0.3);
+      border-radius: 50%;
+      opacity: 0;
+      animation: smokePuff 2s ease-out forwards;
+    }
+    @keyframes smokePuff {
+      0% { opacity: 0.7; transform: translateX(-50%) translateY(0) scale(0.5); }
+      100% { opacity: 0; transform: translateX(-40%) translateY(-30px) scale(1.5); }
+    }
+
+    /* Removing old glow orbs if tsParticles is primary */
+    .particle-glow-container { display: none; }
+
+    /* Birthday Card Popup Styles */
+    .birthday-popup {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.9);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.5s ease;
+    }
+
+    .birthday-popup.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .birthday-card {
+      background: linear-gradient(135deg, var(--pastel-pink), var(--pastel-lavender));
+      padding: 4rem;
+      border-radius: 30px;
+      box-shadow: 0 0 50px rgba(255, 105, 180, 0.6);
+      text-align: center;
+      transform: scale(0.5);
+      transition: transform 0.5s ease;
+      width: 90%;
+      max-width: 1200px;
+      min-height: 80vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+
+    .birthday-popup.active .birthday-card {
+      transform: scale(1);
+    }
+
+    .birthday-card h2 {
+      color: var(--deep-purple);
+      font-size: 4rem;
+      margin-bottom: 2rem;
+      text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.2);
+    }
+
+    .birthday-card p {
+      color: var(--deep-purple);
+      font-size: 2rem;
+      margin-bottom: 3rem;
+      line-height: 1.5;
+    }
+
+    .open-card-btn {
+      background: linear-gradient(45deg, var(--neon-pink), var(--electric-blue));
+      color: white;
+      padding: 1.5rem 4rem;
+      border: none;
+      border-radius: 50px;
+      font-size: 2rem;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+    }
+
+    .open-card-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(255, 105, 180, 0.5);
+    }
+
+    .birthday-card .close-btn {
+      position: absolute;
+      top: 2rem;
+      right: 2rem;
+      background: none;
+      border: none;
+      color: var(--deep-purple);
+      font-size: 3rem;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+      padding: 1rem;
+    }
+
+    .birthday-card .close-btn:hover {
+      transform: rotate(90deg) scale(1.1);
+    }
+
+    /* Enhanced Heart Burst Effect */
+    .heart-burst {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 0;
+      height: 0;
+      z-index: 1001;
+      pointer-events: none;
+    }
+
+    .heart {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: var(--neon-pink);
+      transform: rotate(45deg);
+      animation: heartBurst 1.5s ease-out forwards;
+      filter: drop-shadow(0 0 10px var(--neon-pink));
+    }
+
+    .heart::before,
+    .heart::after {
+      content: '';
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: var(--neon-pink);
+      border-radius: 50%;
+      filter: drop-shadow(0 0 10px var(--neon-pink));
+    }
+
+    .heart::before {
+      left: -10px;
+    }
+
+    .heart::after {
+      top: -10px;
+    }
+
+    @keyframes heartBurst {
+      0% {
+        transform: rotate(45deg) scale(0);
+        opacity: 1;
+      }
+      50% {
+        transform: rotate(45deg) scale(1.5);
+        opacity: 0.8;
+      }
+      100% {
+        transform: rotate(45deg) scale(2.5);
+        opacity: 0;
+      }
+    }
+
+    /* Sparkle Effect */
+    .sparkle {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background-color: white;
+      pointer-events: none;
+      animation: sparkle 1.5s ease-out forwards;
+    }
+
+    @keyframes sparkle {
+      0% {
+        transform: scale(0) rotate(0deg);
+        opacity: 1;
+      }
+      50% {
+        transform: scale(1) rotate(180deg);
+        opacity: 0.8;
+      }
+      100% {
+        transform: scale(0) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    /* Enhanced Card Opening Animation */
+    .birthday-card.opening {
+      animation: cardOpen 1.5s ease-out forwards;
+    }
+
+    @keyframes cardOpen {
+      0% {
+        transform: scale(1) rotate(0deg);
+        filter: brightness(1);
+      }
+      25% {
+        transform: scale(1.1) rotate(2deg);
+        filter: brightness(1.2);
+      }
+      50% {
+        transform: scale(1.2) rotate(-2deg);
+        filter: brightness(1.4);
+      }
+      75% {
+        transform: scale(0.8) rotate(1deg);
+        filter: brightness(1.2);
+      }
+      100% {
+        transform: scale(0) rotate(0deg);
+        filter: brightness(1);
+      }
+    }
+
+    /* Glowing Text Effect */
+    .birthday-card h2 {
+      animation: glowText 2s ease-in-out infinite alternate;
+    }
+
+    @keyframes glowText {
+      0% {
+        text-shadow: 0 0 10px var(--neon-pink),
+                     0 0 20px var(--neon-pink),
+                     0 0 30px var(--neon-pink);
+      }
+      100% {
+        text-shadow: 0 0 20px var(--electric-blue),
+                     0 0 30px var(--electric-blue),
+                     0 0 40px var(--electric-blue);
+      }
+    }
+
+    /* Enhanced Button Effect */
+    .open-card-btn {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .open-card-btn::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(
+        45deg,
+        transparent,
+        rgba(255, 255, 255, 0.3),
+        transparent
+      );
+      transform: rotate(45deg);
+      animation: buttonShine 3s infinite;
+    }
+
+    @keyframes buttonShine {
+      0% {
+        transform: translateX(-100%) rotate(45deg);
+      }
+      100% {
+        transform: translateX(100%) rotate(45deg);
+      }
+    }
+
+  </style>
+<script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@^19.1.0",
+    "react/": "https://esm.sh/react@^19.1.0/",
+    "react-dom/": "https://esm.sh/react-dom@^19.1.0/",
+    "react-dom": "https://esm.sh/react-dom@^19.1.0",
+    "framer-motion": "https://esm.sh/framer-motion@^11"
+  }
+}
+</script>
+<!-- tsParticles library -->
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-slim@2/tsparticles.slim.bundle.min.js"></script>
+<link rel="stylesheet" href="/index.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "สุขสันต์วันเกิดนะคนพิเศษ!",
+  "description": "ส่งความสุขและความปรารถนาดีในวันเกิดของคุณด้วยการ์ดอวยพรวันเกิดที่สวยงามและน่ารัก พร้อมด้วยข้อความอวยพรและความปรารถนาดีที่เต็มไปด้วยความรัก",
+  "url": "https://your-website-url.com/",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Your Organization Name"
+  }
+}
+</script>
+</head>
+<body>
+  <!-- Birthday Card Popup -->
+  <div class="birthday-popup active">
+    <div class="birthday-card">
+      <button class="close-btn">&times;</button>
+      <h2>🎂 สุขสันต์วันเกิด! 🎂</h2>
+      <p>กดปุ่มด้านล่างเพื่อเปิดการ์ดวันเกิดของคุณ</p>
+      <button class="open-card-btn">เปิดการ์ด</button>
+    </div>
+  </div>
+
+  <div id="tsparticles" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -10;"></div>
+  <div id="root"></div>
+  
+  <script type="module" src="/index.tsx"></script>
+  <script>
+    // Birthday Card Popup Logic
+    document.addEventListener('DOMContentLoaded', () => {
+      const popup = document.querySelector('.birthday-popup');
+      const card = document.querySelector('.birthday-card');
+      const openBtn = document.querySelector('.open-card-btn');
+      const closeBtn = document.querySelector('.close-btn');
+
+      function createSparkles(x, y) {
+        for (let i = 0; i < 12; i++) {
+          const sparkle = document.createElement('div');
+          sparkle.className = 'sparkle';
+          sparkle.style.left = `${x}px`;
+          sparkle.style.top = `${y}px`;
+          sparkle.style.transform = `rotate(${i * 30}deg)`;
+          document.body.appendChild(sparkle);
+          setTimeout(() => sparkle.remove(), 1500);
+        }
+      }
+
+      function createHeartBurst() {
+        const burst = document.createElement('div');
+        burst.className = 'heart-burst';
+        
+        // Create multiple hearts with different sizes and colors
+        for (let i = 0; i < 12; i++) {
+          const heart = document.createElement('div');
+          heart.className = 'heart';
+          heart.style.transform = `rotate(${i * 30}deg)`;
+          heart.style.width = `${15 + Math.random() * 10}px`;
+          heart.style.height = `${15 + Math.random() * 10}px`;
+          heart.style.background = i % 2 === 0 ? 'var(--neon-pink)' : 'var(--electric-blue)';
+          burst.appendChild(heart);
+        }
+        
+        document.body.appendChild(burst);
+        setTimeout(() => burst.remove(), 1500);
+      }
+
+      function triggerConfetti() {
+        const duration = 4 * 1000;
+        const animationEnd = Date.now() + duration;
+        const defaults = { 
+          startVelocity: 30, 
+          spread: 360, 
+          ticks: 60, 
+          zIndex: 1001,
+          colors: ['#FF69B4', '#7DF9FF', '#FFD1DC', '#E6E6FA', '#FFB6C1']
+        };
+
+        function randomInRange(min, max) {
+          return Math.random() * (max - min) + min;
+        }
+
+        const interval = setInterval(function() {
+          const timeLeft = animationEnd - Date.now();
+
+          if (timeLeft <= 0) {
+            return clearInterval(interval);
+          }
+
+          const particleCount = 50 * (timeLeft / duration);
+          
+          // Confetti from multiple directions
+          confetti({
+            ...defaults,
+            particleCount,
+            origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 }
+          });
+          
+          confetti({
+            ...defaults,
+            particleCount,
+            origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 }
+          });
+
+          confetti({
+            ...defaults,
+            particleCount: particleCount / 2,
+            origin: { x: randomInRange(0.4, 0.6), y: Math.random() - 0.2 }
+          });
+        }, 250);
+      }
+
+      openBtn.addEventListener('click', (e) => {
+        createHeartBurst();
+        triggerConfetti();
+        createSparkles(e.clientX, e.clientY);
+        card.classList.add('opening');
+        setTimeout(() => {
+          popup.classList.remove('active');
+          card.classList.remove('opening');
+        }, 1500);
+      });
+
+      closeBtn.addEventListener('click', () => {
+        popup.classList.remove('active');
+      });
+    });
+
+    // tsParticles Initialization for "Futuristic + Cute"
+    document.addEventListener('DOMContentLoaded', () => {
+      tsParticles.load("tsparticles", {
+        fpsLimit: 60,
+        particles: {
+          number: {
+            value: 50, // Fewer, softer particles
+            density: {
+              enable: true,
+              value_area: 900 // Larger area for sparser feel
+            }
+          },
+          color: { // Pastel and soft neon colors
+            value: ["#FFB6C1", "#ADD8E6", "#E0B0FF", "#FF69B4", "#FFD700"] // LightPink, LightBlue, LightLavender, HotPink, Gold
+          },
+          shape: {
+            type: ["circle", "star"], // Mix of shapes for cuteness
+          },
+          opacity: {
+            value: {min: 0.2, max: 0.7},
+            animation: {
+              enable: true,
+              speed: 0.8,
+              minimumValue: 0.1
+            }
+          },
+          size: {
+            value: {min: 1, max: 4}, // Slightly larger for a softer look
+            animation: {
+              enable: true,
+              speed: 1.5,
+              minimumValue: 0.8
+            }
+          },
+          links: {
+            enable: true,
+            distance: 130,
+            color: "var(--light-purple)", // Softer link color
+            opacity: 0.2,
+            width: 1
+          },
+          move: {
+            enable: true,
+            speed: 0.8, // Gentle movement
+            direction: "none",
+            random: true,
+            straight: false,
+            out_mode: "out",
+            bounce: false,
+          }
+        },
+        interactivity: {
+          detect_on: "canvas",
+          events: {
+            onhover: {
+              enable: true,
+              mode: "bubble" // "grab" or "repulse" can be too harsh
+            },
+            onclick: {
+              enable: true,
+              mode: "push" 
+            },
+            resize: true
+          },
+          modes: {
+            bubble: {
+              distance: 150,
+              size: 15, // Smaller bubbles
+              duration: 2,
+              opacity: 0.8,
+              color: "#FFC0CB" // Pink bubble
+            },
+            push: {
+              particles_nb: 3
+            },
+          }
+        },
+        detectRetina: true,
+        background: {
+          color: "transparent", 
+        }
+      });
+    });
+  </script>
+</body>
+</html>
